@@ -1,4 +1,4 @@
-# the_snake_game
+# The Snake Game built in Rust, WASM and JS (TS)
 
 ## [Memento to self] Continue course with: Section 18: Game status / 99. Game Status
 
