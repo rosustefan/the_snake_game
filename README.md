@@ -2,7 +2,7 @@
 
 ## [Memento to self] Continue course with: 18 - Game status / 001 Game Status
 
-# Useful actions and commands:
+## Useful actions and commands:
 1. Run npm server
 - go to ../www
 - run command in CLI: npm run dev
