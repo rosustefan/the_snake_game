@@ -1,6 +1,6 @@
 # the_snake_game
 
-## [Memento to self] Continue course with: 18 - Game status / 001 Game Status
+## [Memento to self] Continue course with: Section 18 - Game status / 99. Game Status
 
 ## Useful actions and commands:
 1. Run npm server
