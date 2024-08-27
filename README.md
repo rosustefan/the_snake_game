@@ -10,5 +10,5 @@
 2. Pack Rust code to WASM
 - run command in CLI: wasm-pack build --target web
 
-#Useful URLs:
+## Useful URLs:
 - https://webassembly.github.io/wabt/demo/wat2wasm/
