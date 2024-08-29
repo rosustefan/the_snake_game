@@ -4,17 +4,33 @@ import { rnd } from "./utils/rnd";
 
 init().then(wasm => {
     const CELL_SIZE = 30;
-    const WORLD_WIDTH = 5;
+    const WORLD_WIDTH = 8;
     const snake_SpawnIdx = rnd(WORLD_WIDTH * WORLD_WIDTH);
 
     const world = World.new(WORLD_WIDTH, snake_SpawnIdx);
     const worldWidth = world.width();
 
+    const gameStatus = document.getElementById("game-status");
+    const gameControlBtn = document.getElementById("game-control-btn");
     const canvas = <HTMLCanvasElement>document.getElementById("snake-canvas");
+
     const ctx = canvas.getContext("2d");
 
     canvas.height = worldWidth * CELL_SIZE;
     canvas.width = worldWidth * CELL_SIZE;
+
+    // start the game
+    gameControlBtn.addEventListener("click", _ => {
+        const status = world.game_status();
+
+        if (status === undefined) {
+            gameControlBtn.textContent = "Stop";
+            world.start_game();
+            play();
+        } else {
+            location.reload();
+        }
+    });
 
     document.addEventListener("keydown", (event) => {
         // console.log(event.code);
@@ -99,19 +115,23 @@ init().then(wasm => {
         drawWorld();
         drawSnake();
         drawReward();
+        drawGameStatus();
     }
 
-    function update() {
+    function drawGameStatus() {
+        gameStatus.textContent = world.game_status_text();
+    }
+
+    function play() {
         const fps = 5;
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
             world.step();
             paint();
             // this method takes a callback to be invoked before the next repaint
-            requestAnimationFrame(update);
+            requestAnimationFrame(play);
         }, 1000 / fps)
     }
 
     paint();
-    update();
 })
