@@ -58,8 +58,9 @@ pub struct World {
     snake: Snake,
     size: usize,
     next_cell: Option<SnakeCell>,
-    reward_cell: usize,
+    reward_cell: Option<usize>,
     status: Option<GameStatus>,
+    points: usize,
 }
 
 #[wasm_bindgen]
@@ -75,10 +76,11 @@ impl World {
             snake,
             next_cell: None,
             status: None,
+            points: 0,
         }
     }
 
-    fn gen_reward_cell(max: usize, snake_body: &Vec<SnakeCell>) -> usize {
+    fn gen_reward_cell(max: usize, snake_body: &Vec<SnakeCell>) -> Option<usize> {
         let mut reward_cell;
 
         loop {
@@ -88,14 +90,18 @@ impl World {
             }
         }
 
-        reward_cell
+        Some(reward_cell)
     }
 
     pub fn width(&self) -> usize {
         self.width
     }
 
-    pub fn reward_cell(&self) -> usize {
+    pub fn points(&self) -> usize {
+        self.points
+    }
+
+    pub fn reward_cell(&self) -> Option<usize> {
         self.reward_cell
     }
 
@@ -164,17 +170,22 @@ impl World {
                 }
 
                 // move the snake's body
-                let len = self.snake.body.len();
-
-                for i in 1..len {
+                for i in 1..self.snake_length() {
                     self.snake.body[i] = SnakeCell(snake_clone[i - 1].0);
                 }
 
-                if self.reward_cell == self.snake_head_idx() {
+                // check snake head for overlap/crash into snake body
+                if self.snake.body[1..self.snake_length()].contains(&self.snake.body[0]) {
+                    self.status = Some(GameStatus::Lost)
+                }
+
+                if self.reward_cell == Some(self.snake_head_idx()) {
                     if self.snake_length() < self.size {
+                        self.points += 1; // win 1 point for each collected reward cell
                         self.reward_cell = World::gen_reward_cell(self.size, &self.snake.body)
                     } else {
-                        self.reward_cell = 1000; // last reward_cell will be outside the world grid
+                        self.reward_cell = None; // last reward_cell will be None / not displayed
+                        self.status = Some(GameStatus::Won)
                     }
 
                     self.snake.body.push(SnakeCell(self.snake.body[1].0));

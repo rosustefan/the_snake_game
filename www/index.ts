@@ -1,5 +1,5 @@
 
-import init, { Direction, World } from "snake_game";
+import init, { Direction, GameStatus, World } from "snake_game";
 import { rnd } from "./utils/rnd";
 
 init().then(wasm => {
@@ -11,6 +11,7 @@ init().then(wasm => {
     const worldWidth = world.width();
 
     const gameStatus = document.getElementById("game-status");
+    const points = document.getElementById("points");
     const gameControlBtn = document.getElementById("game-control-btn");
     const canvas = <HTMLCanvasElement>document.getElementById("snake-canvas");
 
@@ -104,12 +105,18 @@ init().then(wasm => {
             world.snake_length()
         )
 
-        snakeCells.forEach((cellIdx, i) => {
-            const fillCollor = i === 0 ? "#7878db" : "#000000";
-            drawRect(cellIdx, fillCollor);
-        })
+        // filter out duplicates
+        // reverse array
+        snakeCells
+            // .filter((cellIdx, i) => !(i > 0 && cellIdx === snakeCells[0]))
+            .slice()
+            .reverse()
+            .forEach((cellIdx, i) => {
+                // we are overriding snake head color by body when we crash
+                const fillCollor = i === snakeCells.length - 1 ? "#7878db" : "#000000";
+                drawRect(cellIdx, fillCollor);
+            })
     }
-
 
     function paint() {
         drawWorld();
@@ -120,10 +127,18 @@ init().then(wasm => {
 
     function drawGameStatus() {
         gameStatus.textContent = world.game_status_text();
+        points.textContent = world.points().toString();
     }
 
     function play() {
-        const fps = 5;
+        const status = world.game_status();
+
+        if (status == GameStatus.Won || status == GameStatus.Lost) {
+            gameControlBtn.textContent = "Re-Play";
+            return;
+        }
+
+        const fps = 3;
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
             world.step();

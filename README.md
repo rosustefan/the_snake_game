@@ -1,6 +1,6 @@
 # The Snake Game built in Rust, WASM and JS (TS)
 
-## [Memento to self] Continue course with: Section 18: Game status / 99. Game Status
+## [Memento to self] Continue course with: Section 20: Deployment / 110. Prod server
 
 ## Useful actions and commands:
 1. Run npm server
