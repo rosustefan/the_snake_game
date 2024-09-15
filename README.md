@@ -1,6 +1,6 @@
 # The Snake Game built in Rust, WASM and JS (TS)
 
-## [Memento to self] Continue course with: Section 20: Deployment / 111. CLI Installation
+## [Memento to self] Continue course with: Section 20: Deployment / 113. Deployment & Course Finish
 
 ## Useful actions and commands:
 1. Run npm server
