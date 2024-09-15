@@ -12,7 +12,7 @@ app.use(compression());
 app.use("/snake", express.static(public));
 
 app.get("/snake/*", (_, res) => {
-    res.sendFile(path.join(public + "index.html"))
+    res.sendFile(path.join(public, "index.html"))
 });
 
 app.listen(port, () => {
