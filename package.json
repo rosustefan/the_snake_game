@@ -1,0 +1,17 @@
+{
+  "name": "snake_game_server",
+  "version": "1.0.0",
+  "description": "## [Memento to self] Continue course with: Section 20: Deployment / 110. Prod server",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.21.0"
+  }
+}
