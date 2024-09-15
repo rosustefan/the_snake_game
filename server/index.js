@@ -9,11 +9,11 @@ const public = path.join(__dirname, "..", "www", "public"); // get to the "publi
 
 
 app.use(compression());
-app.use(express.static(public));
+app.use("/snake", express.static(public));
 
-app.get("*", (_, res) => {
-    res.sendFile(public + "/index.html")
-})
+app.get("/snake/*", (_, res) => {
+    res.sendFile(path.join(public + "index.html"))
+});
 
 app.listen(port, () => {
     console.log("Snake Game Server is running")
