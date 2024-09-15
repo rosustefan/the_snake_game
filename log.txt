@@ -1,0 +1,6 @@
+nohup: ignoring input
+
+> snake_game_server@1.0.0 start
+> node server/index.js
+
+Snake Game Server is running on port 3000
