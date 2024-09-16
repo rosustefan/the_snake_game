@@ -56,16 +56,20 @@ init().then(wasm => {
     })
 
     function drawWorld() {
+        // Set the background to white
+        ctx.fillStyle = "#d3d3d3"; // light grey color for the Snake World
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
         ctx.beginPath();
 
         for (let x = 0; x < worldWidth + 1; x++) {
             ctx.moveTo(CELL_SIZE * x, 0);
-            ctx.lineTo(CELL_SIZE * x, worldWidth * CELL_SIZE)
+            ctx.lineTo(CELL_SIZE * x, worldWidth * CELL_SIZE);
         }
 
         for (let y = 0; y < worldWidth + 1; y++) {
             ctx.moveTo(0, CELL_SIZE * y);
-            ctx.lineTo(worldWidth * CELL_SIZE, CELL_SIZE * y)
+            ctx.lineTo(worldWidth * CELL_SIZE, CELL_SIZE * y);
         }
 
         ctx.stroke();
