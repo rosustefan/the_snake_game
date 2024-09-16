@@ -55,6 +55,29 @@ init().then(wasm => {
         }
     })
 
+    // Integrate touch-screen controls with buttons
+    document.getElementById("up").addEventListener("click", () => moveSnake("up"));
+    document.getElementById("left").addEventListener("click", () => moveSnake("left"));
+    document.getElementById("down").addEventListener("click", () => moveSnake("down"));
+    document.getElementById("right").addEventListener("click", () => moveSnake("right"));
+
+    function moveSnake(direction: string) {
+        switch (direction) {
+            case "up":
+                world.change_snake_dir(Direction.Up);
+                break;
+            case "right":
+                world.change_snake_dir(Direction.Right);
+                break;
+            case "down":
+                world.change_snake_dir(Direction.Down);
+                break;
+            case "left":
+                world.change_snake_dir(Direction.Left);
+                break;
+        }
+    }
+
     function drawWorld() {
         // Set the background to white
         ctx.fillStyle = "#d3d3d3"; // light grey color for the Snake World

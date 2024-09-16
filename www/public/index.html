@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snake Game</title>
     <style>
         .content-wrapper {
             top: 0;
@@ -34,27 +34,72 @@
 
         #game-control-btn {
             padding: 5px 10px;
-            /* Adjust padding to control space around the text */
             margin: 0;
-            /* Remove default margin */
             font-size: 12px;
-            /* Adjust font size if needed */
             border: 1px solid #ccc;
-            /* Optional: Add a border */
             border-radius: 4px;
-            /* Optional: Add rounded corners */
             background-color: #007bff;
-            /* Background color */
             color: white;
-            /* Text color */
             cursor: pointer;
-            /* Change cursor to pointer */
             display: inline-flex;
-            /* Ensure button content is properly aligned */
             align-items: center;
-            /* Center content vertically */
             justify-content: center;
-            /* Center content horizontally */
+        }
+
+        /* Add the D-pad control buttons */
+        .controls-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #controls {
+            display: grid;
+            grid-template-columns: repeat(3, 50px);
+            grid-template-rows: repeat(3, 50px);
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Map each button to a specific grid area */
+        #up {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+
+        #left {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+
+        #down {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
+
+        #right {
+            grid-column: 3 / 4;
+            grid-row: 2 / 3;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:active {
+            background-color: #0056b3;
         }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
@@ -86,8 +131,20 @@
                 </button>
             </div>
         </div>
+
         <canvas id="snake-canvas"></canvas>
+
+        <!-- D-pad controls for the snake -->
+        <div class="controls-wrapper">
+            <div id="controls">
+                <button id="up" class="control-btn">↑</button>
+                <button id="left" class="control-btn">←</button>
+                <button id="down" class="control-btn">↓</button>
+                <button id="right" class="control-btn">→</button>
+            </div>
+        </div>
     </div>
+
     <script src="/snake/bootstrap.js"></script>
 </body>
 
