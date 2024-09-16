@@ -142,7 +142,8 @@ init().then(wasm => {
             return;
         }
 
-        const fps = 3;
+        const fps = 5;
+
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
             world.step();
