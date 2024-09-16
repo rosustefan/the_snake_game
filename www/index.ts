@@ -55,6 +55,44 @@ init().then(wasm => {
         }
     })
 
+    // Add swipe events for touch-screen devices
+    let startX, startY, endX, endY;
+    
+    document.addEventListener("touchstart", (event) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    });
+    
+    document.addEventListener("touchend", (event) => {
+        endX = e.changedTouches[0].clientX;
+        endY = e.changedTouches[0].clientY;
+    
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        let diffX = endX - startX;
+        let diffY = endY - startY;
+    
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
+                // Move right
+                world.change_snake_dir(Direction.Right);
+            } else {
+                // Move left
+                world.change_snake_dir(Direction.Left);
+            }
+        } else {
+            if (diffY > 0) {
+                // Move down
+                world.change_snake_dir(Direction.Down);
+            } else {
+                // Move up
+                world.change_snake_dir(Direction.Up);
+            }
+        }
+    }
+
     function drawWorld() {
         // Set the background to white
         ctx.fillStyle = "#d3d3d3"; // light grey color for the Snake World
