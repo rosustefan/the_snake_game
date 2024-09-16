@@ -62,6 +62,9 @@ init().then(wasm => {
 
         ctx.beginPath();
 
+        // Set the color of the borders (grid lines)
+        ctx.strokeStyle = "#95a5a6";  // Change this to any color you like (e.g., red)
+
         for (let x = 0; x < worldWidth + 1; x++) {
             ctx.moveTo(CELL_SIZE * x, 0);
             ctx.lineTo(CELL_SIZE * x, worldWidth * CELL_SIZE);
