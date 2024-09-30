@@ -3,21 +3,4 @@ nohup: ignoring input
 > snake_game_server@1.0.0 start
 > node server/index.js
 
-events.js:291
-      throw er; // Unhandled 'error' event
-      ^
-
-Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
-    at Server.setupListenHandle [as _listen2] (net.js:1310:16)
-    at listenInCluster (net.js:1358:12)
-    at doListen (net.js:1495:7)
-    at processTicksAndRejections (internal/process/task_queues.js:85:21)
-Emitted 'error' event on Server instance at:
-    at emitErrorNT (net.js:1337:8)
-    at processTicksAndRejections (internal/process/task_queues.js:84:21) {
-  code: 'EADDRINUSE',
-  errno: 'EADDRINUSE',
-  syscall: 'listen',
-  address: '0.0.0.0',
-  port: 3000
-}
+Snake Game Server is running on port 3000

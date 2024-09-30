@@ -18,9 +18,12 @@
 - go to / folder
 - run command in CLI: npm start
 
-5. Serve on my AWS EC2 instance until I implement a systemd service
+5. Serve manually on my AWS EC2 instance until I implement a systemd service or 
+a [pm2](https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896) process manager 
 - go to / folder
-- nohup npm start > log.txt 2>&1 & 
+- nohup npm start > log.txt 2>&1 &
+
+
 
 ## Useful URLs:
 - https://webassembly.github.io/wabt/demo/wat2wasm/
